@@ -787,12 +787,12 @@ class PlayState extends MusicBeatState
 			fcStrings = [
 				'No Play', 'Perfect Full Combo', 'Sick Full Combo', 'Great Full Combo', 'Bad Full Combo', 'Full Combo', 'Single Digit Misses', 'Clear', 'TDCB', 'QDCB'
 			];
-		else
-			fcStrings = (map != null && map.get(ClientPrefs.ratingType).fc != null) ? map.get(ClientPrefs.ratingType).fc : [
+		else if (map != null && map.exists(ClientPrefs.ratingType))
+			fcStrings = (map != null && map.exists(ClientPrefs.ratingType)) ? map.get(ClientPrefs.ratingType).fc : [
 				'No Play', 'PFC', 'SFC', 'GFC', 'BFC', 'FC', 'SDCB', 'Clear', 'TDCB', 'QDCB'
 			];
-		hitStrings = map.get(ClientPrefs.ratingType).hit;
-		judgeCountStrings = map.get(ClientPrefs.ratingType).judgeCount;
+		if (map != null && map.exists(ClientPrefs.ratingType)) hitStrings = map.get(ClientPrefs.ratingType).hit;
+		if (map != null && map.exists(ClientPrefs.ratingType)) judgeCountStrings = map.get(ClientPrefs.ratingType).judgeCount;
 
 		GameOverSubstate.resetVariables();
 		var songName:String = Paths.formatToSongPath(SONG.song);
